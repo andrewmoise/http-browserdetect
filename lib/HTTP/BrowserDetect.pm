@@ -75,6 +75,7 @@ our @BROWSER_TESTS = qw(
     webtv          browsex     silk
     applecoremedia galeon      seamonkey
     epiphany       ucbrowser   dalvik
+    pubsub
 );
 
 our @IE_TESTS = qw(
@@ -127,7 +128,7 @@ our @ROBOT_TESTS = qw(
     linkchecker     yandeximages   specialarchiver
     yandex          java           lib
     indy            golib          rubylib
-    apache
+    apache          malware        phplib
 );
 
 our @MISC_TESTS = qw(
@@ -176,9 +177,11 @@ my %ROBOT_NAMES = (
     linkexchange    => 'LinkExchange',
     lwp             => 'LWP::UserAgent',
     lycos           => 'Lycos',
+    malware         => 'Malware / hack attempt',
     mj12bot         => 'Majestic-12 DSearch',
     msn             => 'MSN',
     msnmobile       => 'MSN Mobile',
+    phplib          => 'PHP http library',
     puf             => 'puf',
     robot           => 'robot',
     rubylib         => 'Ruby http library',
@@ -219,6 +222,7 @@ my %BROWSER_NAMES = (
     netscape       => 'Netscape',
     obigo          => 'Obigo',
     opera          => 'Opera',
+    pubsub         => 'Safari RSS Reader',
     puf            => 'puf',
     realplayer     => 'RealPlayer',
     safari         => 'Safari',
@@ -716,6 +720,10 @@ sub _init_core {
         $browser = 'ucbrowser';
         $browser_tests->{$browser} = 1;
     }
+    elsif ( index( $ua, "apple-pubsub" ) != -1 ) {
+	$browser = 'pubsub';
+	$browser_tests->{$browser} = 1;
+    }
 
     $self->{browser} = $browser;
     $self->{browser_string} = $browser_string || $BROWSER_NAMES{$browser}
@@ -832,6 +840,9 @@ sub _init_robots {
     elsif ( index( $ua, "apache-httpclient" ) != -1 ) {
         $r = 'apache';
     }
+    elsif ( index( $ua, '() { :; };' ) != -1 ) {
+	$r = 'malware';
+    }
     elsif ( index( $ua, "ask jeeves/teoma" ) != -1 ) {
         $r = 'askjeeves';
     }
@@ -879,6 +890,10 @@ sub _init_robots {
         $r = 'golib';
         $robot_tests->{lib} = 1;
     }
+    elsif ( $ua =~ m{^http_request} ) {
+	$r = 'phplib';
+	$robot_tests->{lib} = 1;
+    }
     elsif ( index( $ua, "indy library" ) != -1 ) {
         $r = 'indy';
         $robot_tests->{lib} = 1;
@@ -915,7 +930,7 @@ sub _init_robots {
     elsif ( index( $ua, "webcrawler" ) != -1 ) {
         $r = 'webcrawler';
     }
-    elsif ( index( $ua, "wget" ) != -1 ) {
+    elsif ( index( $ua, "wget" ) == 0 ) {
         $r = 'wget';
     }
     elsif ( index( $ua, "yandexbot" ) != -1 ) {
@@ -1480,6 +1495,12 @@ sub _init_version {
         $minor = $2;
         $beta  = $3;
     }
+    elsif ( $browser eq 'pubsub'
+	    && $ua =~ m{apple-pubsub/(\d+)\.(\d+)([\d.]*)} ) {
+	$major = $1;
+	$minor = $2;
+	$beta = $3;
+    }
 
     # If we didn't match a browser-specific test, we look for
     # "$browser/x.y.z"
@@ -1854,7 +1875,12 @@ sub _init_device {
     }
     elsif ( $self->{user_agent} =~ /android .*\; ([^;]*) build/i ) {
         if ( $device_tests->{tablet} ) {
-            $device_string = "Android tablet ($1)";
+	    my $model = $1;
+	    if ( $model =~ m{^KF} ) {
+		$device_string = "Android tablet (Kindle Fire)";
+	    } else {
+		$device_string = "Android tablet ($model)";
+	    }
         }
         else {
             $device_string = "Android ($1)";
@@ -2458,8 +2484,8 @@ Returns the browser, as one of the following values:
 chrome, firefox, ie, opera, safari, applecoremedia, blackberry,
 browsex, dalvik, elinks, links, lynx, emacs, epiphany, galeon,
 konqueror, icab, lotusnotes, mosaic, mozilla, netfront, netscape,
-n3ds, dsi, obigo, realplayer, seamonkey, silk, staroffice, ucbrowser,
-webtv
+n3ds, dsi, obigo, pubsub, realplayer, seamonkey, silk, staroffice,
+ucbrowser, webtv
 
 If the browser could not be identified (either because unrecognized
 or because it is a robot), returns C<undef>.
@@ -2585,8 +2611,9 @@ lwp, slurp, yahoo, msnmobile, msn, ahrefs, altavista, apache,
 askjeeves, baidu, curl, facebook, getright, googleadsbot,
 googleadsense, googlebotimage, googlebotnews, googlebotvideo,
 googlemobile, google, golib, indy, infoseek, linkexchange,
-linkchecker, lycos, mj12bot, puf, rubylib, scooter, specialarchiver,
-webcrawler, wget, yandexbot, yandeximages, java, unknown
+linkchecker, lycos, malware, mj12bot, phplib, puf, rubylib, scooter,
+specialarchiver, webcrawler, wget, yandexbot, yandeximages, java,
+unknown 
 
 Returns "unknown" when the user agent is believed to be a robot but
 is not identified as one of the above specific robots.
@@ -2842,6 +2869,8 @@ value. This is by no means a complete list of robots that exist on the Web.
 =head3 lwp
 
 =head3 lycos
+
+=head3 malware
 
 =head3 mj12bot
 

@@ -81,9 +81,12 @@
       "robot_name" : "Apache http client"
    },
    "Apple-PubSub/28" : {
+      "browser" : "pubsub",
       "browser_major" : 0,
       "browser_minor" : ".0",
-      "match" : [],
+      "match" : [
+          "pubsub"
+      ],
       "robot" : 0
    },
    "AppleCoreMedia/1.0.0.9A405 (iPad; U; CPU OS 5_0_1 like Mac OS X; en_us)" : {
@@ -8604,7 +8607,7 @@
       "browser" : "silk",
       "browser_string" : "Silk",
       "device" : "android",
-      "device_string" : "Android tablet (KFOT)",
+      "device_string" : "Android tablet (Kindle Fire)",
       "engine" : "webkit",
       "engine_beta" : "",
       "engine_major" : "537",
@@ -8640,7 +8643,7 @@
       "browser_string" : "Silk",
       "country" : "US",
       "device" : "android",
-      "device_string" : "Android tablet (KFOT)",
+      "device_string" : "Android tablet (Kindle Fire)",
       "engine" : "webkit",
       "engine_beta" : "",
       "engine_major" : "537",
@@ -8666,7 +8669,7 @@
       "browser" : "silk",
       "browser_string" : "Silk",
       "device" : "android",
-      "device_string" : "Android tablet (KFTT)",
+      "device_string" : "Android tablet (Kindle Fire)",
       "engine" : "webkit",
       "engine_beta" : "",
       "engine_major" : "537",
@@ -8702,7 +8705,7 @@
       "browser_string" : "Silk",
       "country" : "US",
       "device" : "android",
-      "device_string" : "Android tablet (KFTT)",
+      "device_string" : "Android tablet (Kindle Fire)",
       "engine" : "webkit",
       "engine_beta" : "",
       "engine_major" : "537",
@@ -9717,7 +9720,7 @@
       "browser_string" : "Silk",
       "country" : "US",
       "device" : "android",
-      "device_string" : "Android tablet (KFASWI)",
+      "device_string" : "Android tablet (Kindle Fire)",
       "engine" : "webkit",
       "engine_beta" : "",
       "engine_major" : "537",
@@ -9746,7 +9749,7 @@
       "browser_string" : "Silk",
       "country" : "US",
       "device" : "android",
-      "device_string" : "Android tablet (KFTHWI)",
+      "device_string" : "Android tablet (Kindle Fire)",
       "engine" : "webkit",
       "engine_beta" : "",
       "engine_major" : "537",

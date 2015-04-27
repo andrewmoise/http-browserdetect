@@ -102,7 +102,6 @@
          "ios",
          "ipad",
          "lib",
-         "mobile",
          "tablet"
       ],
       "minor" : ".0",
@@ -433,7 +432,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "safari"
       ],
@@ -6005,7 +6003,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "chrome",
          "webkit"
@@ -6269,7 +6266,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "chrome",
          "webkit"
@@ -6297,7 +6293,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "chrome",
          "webkit"
@@ -6325,7 +6320,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "chrome",
          "webkit"
@@ -6380,7 +6374,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "chrome",
          "webkit"
@@ -7131,7 +7124,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "chrome",
          "webkit"
@@ -7159,7 +7151,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "chrome",
          "webkit"
@@ -7187,7 +7178,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "chrome",
          "webkit"
@@ -7677,7 +7667,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "chrome",
          "webkit"
@@ -8273,7 +8262,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "chrome",
          "webkit"
@@ -8504,7 +8492,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "safari",
          "webkit"
@@ -8619,7 +8606,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "webkit",
          "silk"
@@ -8653,7 +8639,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "silk",
          "webkit"
@@ -8681,7 +8666,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "webkit",
          "silk"
@@ -8715,7 +8699,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "silk",
          "webkit"
@@ -9614,7 +9597,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "safari",
          "webkit"
@@ -9730,7 +9712,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "silk",
          "webkit"
@@ -9759,7 +9740,6 @@
       "match" : [
          "device",
          "android",
-         "mobile",
          "tablet",
          "silk",
          "webkit"
@@ -16604,7 +16584,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "safari",
          "webkit"
@@ -16632,7 +16611,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "safari",
          "webkit"
@@ -16660,7 +16638,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "safari",
          "webkit"
@@ -16689,7 +16666,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "webkit",
          "safari"
@@ -16722,7 +16698,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "safari",
          "webkit"
@@ -16750,7 +16725,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "safari",
          "webkit"
@@ -16779,7 +16753,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "webkit",
          "safari"
@@ -16812,7 +16785,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "safari",
          "webkit"
@@ -16840,7 +16812,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "safari",
          "webkit"
@@ -16869,7 +16840,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "webkit",
          "safari"
@@ -16902,7 +16872,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "safari",
          "webkit"
@@ -16931,7 +16900,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "webkit",
          "safari"
@@ -16965,7 +16933,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "webkit",
          "safari"
@@ -16999,7 +16966,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "webkit",
          "safari"
@@ -17033,7 +16999,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "webkit",
          "safari"
@@ -17067,7 +17032,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "webkit",
          "safari"
@@ -17100,7 +17064,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "webkit"
       ],
@@ -17131,7 +17094,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "chrome",
          "webkit"
@@ -17159,7 +17121,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "safari",
          "webkit"
@@ -17189,7 +17150,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "safari",
          "webkit"
@@ -17219,7 +17179,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "safari",
          "webkit"
@@ -17851,7 +17810,6 @@
          "device",
          "ios",
          "ipad",
-         "mobile",
          "tablet",
          "safari",
          "webkit"

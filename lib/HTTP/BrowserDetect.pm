@@ -1749,59 +1749,6 @@ sub _init_device {
         $device_tests->{$device} = 1;
     }
 
-    $device_tests->{mobile} = (
-        ( $browser_tests->{firefox} && index( $ua, "mobile" ) != -1 )
-            || ( $browser_tests->{ie}
-            && index( $ua, "windows phone" ) == -1
-            && index( $ua, "arm" ) != -1 )
-            || index( $ua, "windows phone" ) != -1
-            || index( $ua, "up.browser" ) != -1
-            || index( $ua, "nokia" ) != -1
-            || index( $ua, "alcatel" ) != -1
-            || index( $ua, "ericsson" ) != -1
-            || index( $ua, "sie-" ) == 0
-            || index( $ua, "wmlib" ) != -1
-            || index( $ua, " wap" ) != -1
-            || index( $ua, "wap " ) != -1
-            || index( $ua, "wap/" ) != -1
-            || index( $ua, "-wap" ) != -1
-            || index( $ua, "wap-" ) != -1
-            || index( $ua, "wap" ) == 0
-            || index( $ua, "wapper" ) != -1
-            || index( $ua, "blackberry" ) != -1
-            || index( $ua, "iemobile" ) != -1
-            || index( $ua, "palm" ) != -1
-            || index( $ua, "smartphone" ) != -1
-            || index( $ua, "windows ce" ) != -1
-            || index( $ua, "palmsource" ) != -1
-            || index( $ua, "iphone" ) != -1
-            || index( $ua, "ipod" ) != -1
-            || index( $ua, "ipad" ) != -1
-            || ( index( $ua, "opera mini" ) != -1
-            && index( $ua, "tablet" ) == -1 )
-            || index( $ua, "htc_" ) != -1
-            || index( $ua, "symbian" ) != -1
-            || index( $ua, "webos" ) != -1
-            || index( $ua, "samsung" ) != -1
-            || index( $ua, "samsung" ) != -1
-            || index( $ua, "zetor" ) != -1
-            || index( $ua, "android" ) != -1
-            || index( $ua, "symbos" ) != -1
-            || index( $ua, "opera mobi" ) != -1
-            || index( $ua, "fennec" ) != -1
-            || index( $ua, "obigo" ) != -1
-            || index( $ua, "opera tablet" ) != -1
-            || index( $ua, "rim tablet" ) != -1
-            || ( index( $ua, "bb10" ) != -1
-            && index( $ua, "mobile" ) != -1 )
-            || $device_tests->{psp}
-            || $device_tests->{dsi}
-            || $device_tests->{'n3ds'}
-            || index( $ua, "googlebot-mobile" ) != -1
-            || index( $ua, "msnbot-mobile" ) != -1
-            || index( $ua, "bingbot-mobile" ) != -1
-    );
-
     $device_tests->{tablet} = (
         index( $ua, "ipad" ) != -1
             || ( $browser_tests->{ie}
@@ -1833,6 +1780,61 @@ sub _init_device {
             || index( $ua, "rim tablet" ) != -1
             || index( $ua, "hp-tablet" ) != -1
     );
+
+    if ( !$device_tests->{tablet} ) {
+	$device_tests->{mobile} = (
+	    ( $browser_tests->{firefox} && index( $ua, "mobile" ) != -1 )
+            || ( $browser_tests->{ie}
+		 && index( $ua, "windows phone" ) == -1
+		 && index( $ua, "arm" ) != -1 )
+            || index( $ua, "windows phone" ) != -1
+            || index( $ua, "up.browser" ) != -1
+            || index( $ua, "nokia" ) != -1
+            || index( $ua, "alcatel" ) != -1
+            || index( $ua, "ericsson" ) != -1
+            || index( $ua, "sie-" ) == 0
+            || index( $ua, "wmlib" ) != -1
+            || index( $ua, " wap" ) != -1
+            || index( $ua, "wap " ) != -1
+            || index( $ua, "wap/" ) != -1
+            || index( $ua, "-wap" ) != -1
+            || index( $ua, "wap-" ) != -1
+            || index( $ua, "wap" ) == 0
+            || index( $ua, "wapper" ) != -1
+            || index( $ua, "blackberry" ) != -1
+            || index( $ua, "iemobile" ) != -1
+            || index( $ua, "palm" ) != -1
+            || index( $ua, "smartphone" ) != -1
+            || index( $ua, "windows ce" ) != -1
+            || index( $ua, "palmsource" ) != -1
+            || index( $ua, "iphone" ) != -1
+            || index( $ua, "ipod" ) != -1
+            || index( $ua, "ipad" ) != -1
+            || ( index( $ua, "opera mini" ) != -1
+		 && index( $ua, "tablet" ) == -1 )
+            || index( $ua, "htc_" ) != -1
+            || index( $ua, "symbian" ) != -1
+            || index( $ua, "webos" ) != -1
+            || index( $ua, "samsung" ) != -1
+            || index( $ua, "samsung" ) != -1
+            || index( $ua, "zetor" ) != -1
+            || index( $ua, "android" ) != -1
+            || index( $ua, "symbos" ) != -1
+            || index( $ua, "opera mobi" ) != -1
+            || index( $ua, "fennec" ) != -1
+            || index( $ua, "obigo" ) != -1
+            || index( $ua, "opera tablet" ) != -1
+            || index( $ua, "rim tablet" ) != -1
+            || ( index( $ua, "bb10" ) != -1
+		 && index( $ua, "mobile" ) != -1 )
+            || $device_tests->{psp}
+            || $device_tests->{dsi}
+            || $device_tests->{'n3ds'}
+            || index( $ua, "googlebot-mobile" ) != -1
+            || index( $ua, "msnbot-mobile" ) != -1
+            || index( $ua, "bingbot-mobile" ) != -1
+	    );
+    }
 
     if ( $browser_tests->{obigo} && $ua =~ /^(mot-[^ \/]+)/ ) {
         $device_string = substr $self->{user_agent}, 0, length $1;
@@ -2574,7 +2576,12 @@ format is the same as for the browser_version() functions.
 
 =head2 mobile()
 
-Returns true if the browser appears to belong to a handheld device.
+Returns true if the browser appears to belong to a mobile phone or
+similar device (i.e. one small enough that the mobile version of a
+page is probably preferable over the desktop version). 
+
+In previous versions, tablet devices sometimes had mobile() return
+true. They are now mutually exclusive.
 
 =head2 tablet()
 
@@ -2613,7 +2620,7 @@ googleadsense, googlebotimage, googlebotnews, googlebotvideo,
 googlemobile, google, golib, indy, infoseek, linkexchange,
 linkchecker, lycos, malware, mj12bot, phplib, puf, rubylib, scooter,
 specialarchiver, webcrawler, wget, yandexbot, yandeximages, java,
-unknown 
+unknown
 
 Returns "unknown" when the user agent is believed to be a robot but
 is not identified as one of the above specific robots.

@@ -840,7 +840,7 @@ sub _init_robots {
     elsif ( index( $ua, "apache-httpclient" ) != -1 ) {
         $r = 'apache';
     }
-    elsif ( index( $ua, '() { :; };' ) != -1 ) {
+    elsif ( index( $ua, '() { :;' ) != -1 ) {
 	$r = 'malware';
     }
     elsif ( index( $ua, "ask jeeves/teoma" ) != -1 ) {
@@ -2397,7 +2397,7 @@ sub robot_string {
                 && $self->{user_agent} =~ m{
                                       ([\w]*               # Words before fragment
                                        $fragment           # Match the fragment
-                                       \/[\d\.]+           # Version
+                                       (\/[\d\.]+)?        # Version
                                        [\w]*)              # Beta stuff
                                      }ix
                 ) {
@@ -2578,7 +2578,7 @@ format is the same as for the browser_version() functions.
 
 Returns true if the browser appears to belong to a mobile phone or
 similar device (i.e. one small enough that the mobile version of a
-page is probably preferable over the desktop version). 
+page is probably preferable over the desktop version).
 
 In previous versions, tablet devices sometimes had mobile() return
 true. They are now mutually exclusive.
@@ -2651,6 +2651,23 @@ subject to change and are meant for display purposes. This may include
 additional information (e.g. robots which return "unknown" from
 robot() generally can be identified in a human-readable fashion by
 reading robot_string() ).
+
+=head2 robot_version()
+=head2 robot_major()
+=head2 robot_minor()
+=head2 robot_beta()
+
+Returns version information for the robot, if any could be
+detected. The format is the same as for the browser_version()
+functions.
+
+Note that if a robot crafts a user agent designed to impersonate a
+particular browser, we generally return results appropriate to both
+the actual robot, and the browser it is impersonating. For example,
+googlebot-mobile pretends to be mobile safari so that it will get
+mobile versions of pages. In this case, robot_version() will return
+the version of googlebot-mobile, and browser_version() will return the
+version of Safari that googlebot-mobile is impersonating.
 
 =head1 Browser Properties
 

@@ -162,11 +162,12 @@
       "match" : [
          "device",
          "blackberry",
+         "ipsagent",
          "mobile",
          "robot"
       ],
-      "robot" : "unknown",
-      "robot_name" : "BlackBerry9000/4.6.0.167 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/102 ips-agent"
+      "robot" : "ipsagent",
+      "robot_name" : "Verisign ips-agent"
    },
    "CATExplorador/1.0beta (sistemes at domini dot cat; http://domini.cat/catexplorador.html)" : {
       "beta" : "beta",
@@ -411,7 +412,7 @@
          "robot"
       ],
       "robot" : "unknown",
-      "robot_name" : "ImageSearcherPro/2.2.2 CFNetwork/711.2.23 Darwin/14.0.0"
+      "robot_name" : "ImageSearcherPro"
    },
    "InAGist URL Resolver (http://inagist.com)" : {
       "browser_major" : 0,
@@ -18733,7 +18734,7 @@
          "robot"
       ],
       "robot" : "unknown",
-      "robot_name" : "http://www.yellowpages.com/about/legal/crawl"
+      "robot_name" : "crawl"
    },
    "ia_archiver" : {
       "browser_major" : 0,
@@ -18812,8 +18813,12 @@
    "my sypder/Nutch-1.9" : {
       "browser_major" : 0,
       "browser_minor" : ".0",
-      "match" : [],
-      "robot" : 0
+      "match" : [
+          "nutch",
+          "robot"
+      ],
+      "robot" : "nutch",
+      "robot_name" : "Apache Nutch"
    },
    "netscan.gtisc.gatech.edu" : {
       "browser_major" : 0,
@@ -18833,8 +18838,12 @@
    "pilican/Nutch-1.9" : {
       "browser_major" : 0,
       "browser_minor" : ".0",
-      "match" : [],
-      "robot" : 0
+      "match" : [
+          "nutch",
+          "robot"
+      ],
+      "robot" : "nutch",
+      "robot_name" : "Apache Nutch"
    },
    "python-requests/2.2.1 CPython/2.7.6 Linux/3.13.0-45-generic" : {
       "browser_beta" : ".1",
@@ -18897,10 +18906,11 @@
       "browser_major" : 0,
       "browser_minor" : ".0",
       "match" : [
-         "robot"
+          "nutch",
+          "robot"
       ],
-      "robot" : "unknown",
-      "robot_name" : "tsip-agent/Nutch-1.8"
+      "robot" : "nutch",
+      "robot_name" : "Apache Nutch"
    },
    "visionutils/0.2" : {
       "browser_major" : 0,

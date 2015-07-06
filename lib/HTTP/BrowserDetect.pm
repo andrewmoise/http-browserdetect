@@ -75,7 +75,7 @@ our @BROWSER_TESTS = qw(
     webtv          browsex     silk
     applecoremedia galeon      seamonkey
     epiphany       ucbrowser   dalvik
-    pubsub
+    pubsub         adm
 );
 
 our @IE_TESTS = qw(
@@ -129,6 +129,7 @@ our @ROBOT_TESTS = qw(
     yandex          java           lib
     indy            golib          rubylib
     apache          malware        phplib
+    ipsagent        nutch
 );
 
 our @MISC_TESTS = qw(
@@ -172,6 +173,7 @@ my %ROBOT_NAMES = (
     golib           => 'Go language http library',
     indy            => 'Indy Library',
     infoseek        => 'InfoSeek',
+    ipsagent        => 'Verisign ips-agent',
     java            => 'Java',
     linkchecker     => 'LinkChecker',
     linkexchange    => 'LinkExchange',
@@ -181,6 +183,7 @@ my %ROBOT_NAMES = (
     mj12bot         => 'Majestic-12 DSearch',
     msn             => 'MSN',
     msnmobile       => 'MSN Mobile',
+    nutch           => 'Apache Nutch',
     phplib          => 'PHP http library',
     puf             => 'puf',
     robot           => 'robot',
@@ -195,6 +198,7 @@ my %ROBOT_NAMES = (
 );
 
 my %BROWSER_NAMES = (
+    adm            => 'Android Download Manager',
     aol            => 'AOL Browser',
     applecoremedia => 'AppleCoreMedia',
     blackberry     => 'BlackBerry',
@@ -712,6 +716,10 @@ sub _init_core {
         $browser = 'applecoremedia';
         $browser_tests->{$browser} = 1;
     }
+    elsif ( index( $ua, "androiddownloadmanager" ) != -1 ) {
+	$browser = 'adm';
+	$browser_tests->{$browser} = 1;
+    }
     elsif ( index( $ua, "dalvik" ) != -1 ) {
         $browser = 'dalvik';
         $browser_tests->{$browser} = 1;
@@ -840,7 +848,8 @@ sub _init_robots {
     elsif ( index( $ua, "apache-httpclient" ) != -1 ) {
         $r = 'apache';
     }
-    elsif ( index( $ua, '() { :;' ) != -1 ) {
+    elsif ( $ua =~ m{\( *\) *\{ *\: *\; *} ) {
+	# Shellcode for spawning a process, i.e. (){:;} with some kind of whitespace interleaved
 	$r = 'malware';
     }
     elsif ( index( $ua, "ask jeeves/teoma" ) != -1 ) {
@@ -901,6 +910,9 @@ sub _init_robots {
     elsif ( index( $ua, "infoseek" ) != -1 ) {
         $r = 'infoseek';
     }
+    elsif ( index( $ua, "ips-agent" ) != -1 ) {
+	$r = 'ipsagent';
+    }
     elsif ( index( $ua, "lecodechecker" ) != -1 ) {
         $r = 'linkexchange';
     }
@@ -916,6 +928,9 @@ sub _init_robots {
     }
     elsif ( index( $ua, "mj12bot/" ) != -1 ) {
         $r = 'mj12bot';
+    }
+    elsif ( index( $ua, "nutch" ) != -1 ) {
+	$r = 'nutch';
     }
     elsif ( index( $ua, "puf/" ) != -1 ) {
         $r = 'puf';
@@ -948,7 +963,8 @@ sub _init_robots {
     }
 
     if (   $browser_tests->{applecoremedia}
-        || $browser_tests->{dalvik} ) {
+        || $browser_tests->{dalvik}
+	|| $browser_tests->{adm} ) {
         $robot_tests->{lib} = 1;
     }
 
@@ -2483,7 +2499,7 @@ web server when calling a CGI script.
 
 Returns the browser, as one of the following values:
 
-chrome, firefox, ie, opera, safari, applecoremedia, blackberry,
+chrome, firefox, ie, opera, safari, adm, applecoremedia, blackberry,
 browsex, dalvik, elinks, links, lynx, emacs, epiphany, galeon,
 konqueror, icab, lotusnotes, mosaic, mozilla, netfront, netscape,
 n3ds, dsi, obigo, pubsub, realplayer, seamonkey, silk, staroffice,
@@ -2617,10 +2633,10 @@ automated Web client, this returns one of the following values:
 lwp, slurp, yahoo, msnmobile, msn, ahrefs, altavista, apache,
 askjeeves, baidu, curl, facebook, getright, googleadsbot,
 googleadsense, googlebotimage, googlebotnews, googlebotvideo,
-googlemobile, google, golib, indy, infoseek, linkexchange,
-linkchecker, lycos, malware, mj12bot, phplib, puf, rubylib, scooter,
-specialarchiver, webcrawler, wget, yandexbot, yandeximages, java,
-unknown
+googlemobile, google, golib, indy, infoseek, ipsagent, linkexchange,
+linkchecker, lycos, malware, mj12bot, nutch, phplib, puf, rubylib,
+scooter, specialarchiver, webcrawler, wget, yandexbot, yandeximages,
+java, unknown
 
 Returns "unknown" when the user agent is believed to be a robot but
 is not identified as one of the above specific robots.
@@ -2751,15 +2767,27 @@ The following methods are available, each returning a true or false value.
 Some methods also test for the browser version, saving you from checking the
 version separately.
 
+=head3 adm
+
 =head3 aol aol3 aol4 aol5 aol6
+
+=head3 applecoremedia
+
+=head3 avantgo
+
+=head3 browsex
 
 =head3 chrome
 
+=head3 dalvik
+
 =head3 emacs
+
+=head3 epiphany
 
 =head3 firefox
 
-=head3 gecko
+=head3 galeon
 
 =head3 icab
 
@@ -2790,7 +2818,11 @@ the version of Trident in the engine_version method.
 
 =head3 netscape nav2 nav3 nav4 nav4up nav45 nav45up navgold nav6 nav6up
 
+=head3 obigo
+
 =head3 opera opera3 opera4 opera5 opera6 opera7
+
+=head3 pubsub
 
 =head3 realplayer
 
@@ -2804,7 +2836,13 @@ browser (but returns 0 for the plugin).
 
 =head3 safari
 
+=head3 seamonkey
+
+=head3 silk
+
 =head3 staroffice
+
+=head3 ucbrowser
 
 =head3 webtv
 
@@ -2885,6 +2923,8 @@ value. This is by no means a complete list of robots that exist on the Web.
 =head3 indy
 
 =head3 infoseek
+
+=head3 ipsagent
 
 =head3 java
 
